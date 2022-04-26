@@ -5,38 +5,38 @@
 
   <div class="smallbox">
 
-          <!-- Makes POST request to /login route -->
-          <form action="/login" method="POST">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password">
-            </div>
-            <button type="submit" class=" blue button" style="">Login</button>
-          </form>
-
-    </div>
-
-      <!--kode for google og facebook API-->
-      <div>
-        <div class="card-body">
-          <a class="btn btn-block btn-social btn-google white" style="width: 26%;" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign Up with Google
-          </a>
-        </div>
-        <div class="card-body">
-          <a class="btn btn-block btn-social btn-facebook blue" style="width: 26%;" href="/auth/facebook" role="button">
-            <i class="fab fa-facebook"></i>
-            Sign Up with Facebook
-          </a>
-        </div>
+    <!-- Makes POST request to /login route -->
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="username">
       </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <button type="submit" class=" blue button" style="">Login</button>
+    </form>
 
   </div>
+
+  <!--kode for google og facebook API-->
+  <div>
+    <div class="card-body">
+      <a class="btn btn-block btn-social btn-google white" style="width: 26%;" href="/auth/google" role="button">
+        <i class="fab fa-google"></i>
+        Sign Up with Google
+      </a>
+    </div>
+    <div class="card-body">
+      <a class="btn btn-block btn-social btn-facebook blue" style="width: 26%;" href="/auth/facebook" role="button">
+        <i class="fab fa-facebook"></i>
+        Sign Up with Facebook
+      </a>
+    </div>
+  </div>
+
+</div>
 </div>
 
 <%- include('partials/footer') %>
