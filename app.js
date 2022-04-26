@@ -13,6 +13,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 //facebook
 const FacebookStrategy = require('passport-facebook').Strategy;
 
+// code får å få findorCreate som hjelper med å google/facebook fine om du har eller om de må lage en ny kont
 const findOrCreate = require("mongoose-findorcreate")
 
 
@@ -26,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: "Ourlittlecret",
+    secret: "Ourlittlsecret",
     resave: false,
     saveUninitialized: false
 }))
@@ -39,10 +40,10 @@ mongoose.connect("mongodb://localhost:27017/tverrDB", {useNewUrlParser: true});
 
 //
 const userSchema = new mongoose.Schema ({
-    email: String,
+    email: String,  // email
     password: String,
-    googleId: String,
-    facebookId: String, 
+    googleId: String,  // dette er lagrer google IDen hvis du loger in med google
+    facebookId: String, // dette er lagrer facebook IDen hvis du loger in med facebook
     secret: String
 });
 
@@ -69,7 +70,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets", 
+    callbackURL: "http://localhost:3000/auth/google/tverrfag", 
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 
   },
@@ -104,12 +105,12 @@ app.get("/", function(req, res) {
 });
 
 
-//auth google får å sjekke om det er riktig
+//auth google   dette sjekker om du du er tillat av google til bli athenticated
 app.get("/auth/google",
     passport.authenticate("google", { scope: ["profile"] })
 );
 
-app.get("/auth/google/documentation", 
+app.get("/auth/google/tverrfag", 
     passport.authenticate("google", { failureRedirect: "/login"}),
     function(req, res) {
         res.redirect("/documentation")
@@ -117,12 +118,12 @@ app.get("/auth/google/documentation",
 );
 
 
-//auth facebook får å sjekke om det er riktig
+//auth facebook      dette sjekker om du du er tillat av facebook til bli athenticated
 app.get("/auth/facebook",
     passport.authenticate("facebook", { scope: ["profile"] })
 );
 
-app.get("/auth/facebook/documentation", 
+app.get("/auth/facebook/tverrfag", 
     passport.authenticate("facebook", { failureRedirect: "/login"}),
     function(req, res) {
         res.redirect("/Documentation")
@@ -143,7 +144,7 @@ app.get("/register", function(req, res) {
 app.get("/documentation", function(req, res){
 
     //  
-    User.find({"documentation": {$ne: null}}, function(err, foundUsers) {
+    User.find({"secret": {$ne: null}}, function(err, foundUsers) {
         if (err) {
             console.log(err)
         } else {

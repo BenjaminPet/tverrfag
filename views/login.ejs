@@ -5,7 +5,7 @@
 
   <div class="smallbox">
 
-          <!-- Makes POST request to /dlogin route -->
+          <!-- Makes POST request to /login route -->
           <form action="/login" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
@@ -20,13 +20,21 @@
 
     </div>
 
-          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+      <!--kode for google og facebook API-->
+      <div>
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-google white" style="width: 26%;" href="/auth/google" role="button">
             <i class="fab fa-google"></i>
-            Sign In with Google
+            Sign Up with Google
+          </a>
+        </div>
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-facebook blue" style="width: 26%;" href="/auth/facebook" role="button">
+            <i class="fab fa-facebook"></i>
+            Sign Up with Facebook
           </a>
         </div>
       </div>
-    </div>
 
   </div>
 </div>
