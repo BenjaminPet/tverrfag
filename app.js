@@ -34,9 +34,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//coden som linker databasen tverrDB til koden 
 mongoose.connect("mongodb://localhost:27017/tverrDB", {useNewUrlParser: true});
 
-
+//
 const userSchema = new mongoose.Schema ({
     email: String,
     password: String,
@@ -48,7 +49,7 @@ const userSchema = new mongoose.Schema ({
 userSchema.plugin(passportLocalMongoose)
 userSchema.plugin(findOrCreate)
 
-// dette er her får å finne den spesifikke collections som du vill sende/hente fra
+// får å finne den spesifikke collections som du vill sende/hente fra
 const User = new mongoose.model("tverruser", userSchema);
 
 passport.use(User.createStrategy());
@@ -103,7 +104,7 @@ app.get("/", function(req, res) {
 });
 
 
-//auth google
+//auth google får å sjekke om det er riktig
 app.get("/auth/google",
     passport.authenticate("google", { scope: ["profile"] })
 );
@@ -116,7 +117,7 @@ app.get("/auth/google/documentation",
 );
 
 
-//auth facebook
+//auth facebook får å sjekke om det er riktig
 app.get("/auth/facebook",
     passport.authenticate("facebook", { scope: ["profile"] })
 );
@@ -128,17 +129,21 @@ app.get("/auth/facebook/documentation",
     }
 );
 
-
+// render login
 app.get("/login", function(req, res) {
     res.render("login")
 });
 
+// render registrere
 app.get("/register", function(req, res) {
     res.render("register")
 });
 
+// render documentasjon HVIS den har funnet brukeren
 app.get("/documentation", function(req, res){
-    User.find({"secret": {$ne: null}}, function(err, foundUsers) {
+
+    //  
+    User.find({"documentation": {$ne: null}}, function(err, foundUsers) {
         if (err) {
             console.log(err)
         } else {
@@ -149,6 +154,7 @@ app.get("/documentation", function(req, res){
     })
 });
 
+// hvis IsAthenticated = true så skal den render submit
 app.get("/submit", function(req, res) {
     if (req.isAuthenticated()) {
         res.render("submit")
@@ -157,6 +163,7 @@ app.get("/submit", function(req, res) {
     }
 })
 
+//
 app.post("/submit", function(req, res) {
     const submittedSecrets = req.body.secret;
 
@@ -174,11 +181,13 @@ app.post("/submit", function(req, res) {
     })
 })
 
+//hvis logout knappen eller skriver in /logout så skal den logout og gå til homepage
 app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
 });
 
+// 
 app.post("/register", function(req, res) {
     User.register({username: req.body.username}, req.body.password, function(err, user){
         if (err) {
@@ -192,6 +201,7 @@ app.post("/register", function(req, res) {
     })
 })   
 
+// 
 app.post("/login", function(req, res) {
 
     const user = new User({
@@ -213,7 +223,7 @@ app.post("/login", function(req, res) {
 
 
 
-
+// starter opp serveren på 3000
 app.listen(3000, function() {
     console.log("Server started on port 3000")
 })
