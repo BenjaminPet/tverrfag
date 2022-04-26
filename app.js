@@ -1,6 +1,8 @@
 //jshint esversion:6
 
+//dotenv får .env filen til å være skjult
 require("dotenv").config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
