@@ -1,7 +1,7 @@
 //jshint esversion:6
 
-//dotenv får .env filen til å være skjult
-require("dotenv").config();
+
+require("dotenv").config(); //dotenv får .env filen til å være skjult
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -156,7 +156,7 @@ app.get("/register", function (req, res) {
     res.render("register")
 });
 
-// render documentasjon HVIS den har funnet brukeren
+// render documentasjon HVIS IsAthenticated = true(har funnet brukeren)
 app.get("/documentation", function (req, res) {
 
     //  
@@ -177,7 +177,7 @@ app.get("/documentation", function (req, res) {
     })
 });
 
-// hvis IsAthenticated = true så skal den render submit
+// ????????????????render submit HVIS IsAthenticated = true(har funnet brukeren)
 app.get("/submit", function (req, res) {
     if (req.isAuthenticated()) {
         res.render("submit")
@@ -186,7 +186,7 @@ app.get("/submit", function (req, res) {
     }
 })
 
-//
+// ?????????? hvis du er på submit og sender en beskjed så vill den dukke opp på documents
 app.post("/submit", function (req, res) {
     const submittedSecrets = req.body.secret;
 
@@ -210,7 +210,7 @@ app.get("/logout", function (req, res) {
     res.redirect("/");
 });
 
-// 
+// hvis du skriver en gyldig gmail og passord vil den lagre det ine på databasen
 app.post("/register", function (req, res) {
     User.register({
         username: req.body.username
@@ -226,7 +226,7 @@ app.post("/register", function (req, res) {
     })
 })
 
-// 
+// hvis din email og passord stemmer med det på databasen vil den gi deg authentication og gå til document
 app.post("/login", function (req, res) {
 
     const user = new User({
