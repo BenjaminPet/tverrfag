@@ -34,7 +34,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/tverrDB", {useNewUrlParser: true});
 
 const userSchema = new mongoose.Schema ({
     email: String,
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema ({
 userSchema.plugin(passportLocalMongoose)
 userSchema.plugin(findOrCreate)
 
-const User = new mongoose.model("User", userSchema);
+const User = new mongoose.model("tverruser", userSchema);
 
 passport.use(User.createStrategy());
 
@@ -106,10 +106,10 @@ app.get("/auth/google",
     passport.authenticate("google", { scope: ["profile"] })
 );
 
-app.get("/auth/google/secrets", 
+app.get("/auth/google/documentation", 
     passport.authenticate("google", { failureRedirect: "/login"}),
     function(req, res) {
-        res.redirect("/secrets")
+        res.redirect("/documentation")
     }
 );
 
@@ -119,10 +119,10 @@ app.get("/auth/facebook",
     passport.authenticate("facebook", { scope: ["profile"] })
 );
 
-app.get("/auth/facebook/secrets", 
+app.get("/auth/facebook/documentation", 
     passport.authenticate("facebook", { failureRedirect: "/login"}),
     function(req, res) {
-        res.redirect("/secrets")
+        res.redirect("/Documentation")
     }
 );
 
@@ -135,13 +135,13 @@ app.get("/register", function(req, res) {
     res.render("register")
 });
 
-app.get("/secrets", function(req, res){
+app.get("/documentation", function(req, res){
     User.find({"secret": {$ne: null}}, function(err, foundUsers) {
         if (err) {
             console.log(err)
         } else {
             if (foundUsers) {
-                res.render("secrets", {usersWithSecrets: foundUsers})
+                res.render("documentation", {usersWithSecrets: foundUsers})
             }
         }
     })
@@ -166,7 +166,7 @@ app.post("/submit", function(req, res) {
         } else {
             foundUser.secret = submittedSecrets;
             foundUser.save(function(){
-                res.redirect("/secrets")
+                res.redirect("/documentation")
             })
         }
     })
@@ -184,7 +184,7 @@ app.post("/register", function(req, res) {
             res.redirect("/register")
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/secrets")
+                res.redirect("/")
             })
         }
     })
@@ -202,7 +202,7 @@ app.post("/login", function(req, res) {
             console.log(err)
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/secrets")
+                res.redirect("/documentation")
             })
         }
     })

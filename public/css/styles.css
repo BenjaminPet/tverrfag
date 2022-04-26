@@ -1,16 +1,85 @@
 
 body {
-  background-color: #E8ECEF;
+  background-image: url("../resurser/17545.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  font: bold 20px arial;
+}
+
+.button {
+  font-size: 20px;
+  text-decoration: none;
+  color:#000;
+  border-radius: 10px;
+  border: 1px;
+  width: 100%;
+  box-shadow: 2px 2px 4px black;
+  margin-top: 10%;
+  padding: 10px;
+}
+
+.signup {
+  color: white;
+  background-color: rgb(23, 62, 255);
+}
+.signup:active {
+  background-color: rgb(21, 49, 188);
+}
+.signup:hover {
+  color: white;
+  background-color: rgb(24, 97, 255);
+}
+
+.login {
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+.login:active {
+  background-color: rgb(174, 174, 174);
+}
+.login:hover {
+  color: black;
+  background-color: rgb(234, 234, 234);
+}
+
+
+hr {
+  width: 100%;
+  background-color: none;
+  border: #000 1px solid;
+  border-radius:  10px;
+
+}
+
+.box {
+  background-color: white;
+  border-radius: 10px;
+  border: #000 solid 1px;
+  width: 60%;
+  height: 400px;
+  margin-left: 200px;
+  padding: 50px;
+}
+.smallbox {
+  background-color: white;
+  border-radius: 10px;
+  border: 0px;
+  width: 50%;
+  height: 300px;
+  margin-left: 200px;
+  padding: 50px;
+}
+
+
+.card {
+  background-color: white;
+  border: white;
+  width: 500px;
 }
 
 .centered {
-    padding-top: 200px;
-    text-align: center;
+  padding-top: 100px;
+  text-align: center;
 }
 
-.secret-text {
-  text-align: center;
-  font-size: 2rem;
-  color: #fff;
-  background-color: #000;
-}

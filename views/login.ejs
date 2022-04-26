@@ -1,16 +1,13 @@
 <%- include('partials/header') %>
 
-<div class="container mt-5">
+<div class="centered">
   <h1>Login</h1>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card">
-        <div class="card-body">
+  <div class="smallbox">
 
-          <!-- Makes POST request to /login route -->
+          <!-- Makes POST request to /dlogin route -->
           <form action="/login" method="POST">
-            <div class="form-group">
+            <div class="form-group">dddd
               <label for="email">Email</label>
               <input type="email" class="form-control" name="username">
             </div>
@@ -21,13 +18,8 @@
             <button type="submit" class="btn btn-dark">Login</button>
           </form>
 
-        </div>
-      </div>
     </div>
 
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
           <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
             <i class="fab fa-google"></i>
             Sign In with Google
