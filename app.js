@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: "Ourlittlesecret",
+    secret: "Ourlittlecret",
     resave: false,
     saveUninitialized: false
 }))
@@ -35,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.connect("mongodb://localhost:27017/tverrDB", {useNewUrlParser: true});
+
 
 const userSchema = new mongoose.Schema ({
     email: String,
@@ -47,6 +48,7 @@ const userSchema = new mongoose.Schema ({
 userSchema.plugin(passportLocalMongoose)
 userSchema.plugin(findOrCreate)
 
+// dette er her får å finne den spesifikke collections som du vill sende/hente fra
 const User = new mongoose.model("tverruser", userSchema);
 
 passport.use(User.createStrategy());

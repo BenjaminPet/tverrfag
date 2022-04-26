@@ -15,30 +15,30 @@ body {
   border: 1px;
   width: 100%;
   box-shadow: 2px 2px 4px black;
-  margin-top: 10%;
-  padding: 10px;
+  margin-top: 40px;
+  padding: 15px;
 }
 
-.signup {
+.blue {
   color: white;
   background-color: rgb(23, 62, 255);
 }
-.signup:active {
+.blue:active {
   background-color: rgb(21, 49, 188);
 }
-.signup:hover {
+.blue:hover {
   color: white;
   background-color: rgb(24, 97, 255);
 }
 
-.login {
+.white {
   color: black;
   background-color: rgb(255, 255, 255);
 }
-.login:active {
+.white:active {
   background-color: rgb(174, 174, 174);
 }
-.login:hover {
+.white:hover {
   color: black;
   background-color: rgb(234, 234, 234);
 }
@@ -58,16 +58,16 @@ hr {
   border: #000 solid 1px;
   width: 60%;
   height: 400px;
-  margin-left: 200px;
+  margin-left: 20%;
   padding: 50px;
 }
 .smallbox {
   background-color: white;
   border-radius: 10px;
-  border: 0px;
+  border: #000 solid 1px;
   width: 50%;
   height: 300px;
-  margin-left: 200px;
+  margin-left: 25%;
   padding: 50px;
 }
 
