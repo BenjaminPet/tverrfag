@@ -71,7 +71,7 @@ passport.deserializeUser(function (id, done) {
 
 //google strategy
 passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
+        client_ID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "https://tverrfag.herokuapp.com/auth/google/tverrfag",
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
