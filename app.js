@@ -97,28 +97,6 @@ passport.use(new GoogleStrategy({
 ));
 
 
-// facebook strategy
-passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: "https://tverrfag.herokuapp.com/facebook/callback/"
-    },
-    function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
-
-        User.findOrCreate({
-            facebookId: profile.id
-        }, function (err, user) {
-            return cb(err, user);
-        });
-    }
-));
-
-app.get("/", function (req, res) {
-    res.render("home");
-});
-
-
 //auth google   dette sjekker om du du er tillat av google til bli athenticated
 app.get("/auth/google",
     passport.authenticate("google", {
@@ -135,22 +113,6 @@ app.get("/auth/google/tverrfag",
     }
 );
 
-
-//auth facebook      dette sjekker om du du er tillat av facebook til bli athenticated
-app.get("/auth/facebook",
-    passport.authenticate("facebook", {
-        scope: ["profile"]
-    })
-);
-
-app.get("/auth/facebook/tverrfag",
-    passport.authenticate("facebook", {
-        failureRedirect: "/login"
-    }),
-    function (req, res) {
-        res.redirect("/Documentation")
-    }
-);
 
 // render login
 app.get("/login", function (req, res) {
@@ -183,32 +145,7 @@ app.get("/documentation", function (req, res) {
     })
 });
 
-// ????????????????render submit HVIS IsAthenticated = true(har funnet brukeren)
-app.get("/submit", function (req, res) {
-    if (req.isAuthenticated()) {
-        res.render("submit")
-    } else {
-        res.redirect("/login");
-    }
-})
 
-// ?????????? hvis du er på submit og sender en beskjed så vill den dukke opp på documents
-app.post("/submit", function (req, res) {
-    const submittedSecrets = req.body.secret;
-
-    console.log(req.user.id);
-
-    User.findById(req.user.id, function (err, foundUser) {
-        if (err) {
-            console.log(err);
-        } else {
-            foundUser.secret = submittedSecrets;
-            foundUser.save(function () {
-                res.redirect("/documentation")
-            })
-        }
-    })
-})
 
 //hvis logout knappen eller skriver in /logout så skal den logout og gå til homepage
 app.get("/logout", function (req, res) {
