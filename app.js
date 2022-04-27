@@ -7,6 +7,9 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session");
+
+const MemoryStore = require('memorystore')(session)
+
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 //google
@@ -19,6 +22,7 @@ const findOrCreate = require("mongoose-findorcreate")
 
 
 
+
 const app = express();
 
 app.use(express.static("public"));
@@ -28,6 +32,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     secret: "Ourlittlsecret",
     resave: false,
     saveUninitialized: false
@@ -71,7 +79,7 @@ passport.deserializeUser(function (id, done) {
 
 //google strategy
 passport.use(new GoogleStrategy({
-        client_ID: process.env.GOOGLE_CLIENT_ID,
+        clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "https://tverrfag.herokuapp.com/auth/google/tverrfag",
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
