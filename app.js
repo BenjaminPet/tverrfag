@@ -1,6 +1,5 @@
 //jshint esversion:6
 
-
 require("dotenv").config(); //dotenv får .env filen til å være skjult
 
 const express = require("express");
@@ -91,22 +90,22 @@ passport.use(new GoogleStrategy({
 
 
 // facebook strategy
-passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/auth/facebook/secrets",
-
-    },
-    function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
-
-        User.findOrCreate({
-            facebookId: profile.id
-        }, function (err, user) {
-            return cb(err, user);
-        });
-    }
-));
+//passport.use(new FacebookStrategy({
+//        clientID: process.env.FACEBOOK_CLIENT_ID,
+//        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+//        callbackURL: "http://localhost:3000/auth/facebook/secrets",
+//
+//    },
+//    function (accessToken, refreshToken, profile, cb) {
+//        console.log(profile);
+//
+//        User.findOrCreate({
+//            facebookId: profile.id
+//        }, function (err, user) {
+//            return cb(err, user);
+//        });
+//    }
+//));
 
 app.get("/", function (req, res) {
     res.render("home");
@@ -131,11 +130,11 @@ app.get("/auth/google/tverrfag",
 
 
 //auth facebook      dette sjekker om du du er tillat av facebook til bli athenticated
-app.get("/auth/facebook",
-    passport.authenticate("facebook", {
-        scope: ["profile"]
-    })
-);
+//app.get("/auth/facebook",
+//    passport.authenticate("facebook", {
+//        scope: ["profile"]
+//    })
+//);
 
 app.get("/auth/facebook/tverrfag",
     passport.authenticate("facebook", {
