@@ -97,6 +97,29 @@ passport.use(new GoogleStrategy({
 ));
 
 
+// facebook strategy
+passport.use(new FacebookStrategy({
+        clientID: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/facebook/secrets",
+
+    },
+    function (accessToken, refreshToken, profile, cb) {
+        console.log(profile);
+
+        User.findOrCreate({
+            facebookId: profile.id
+        }, function (err, user) {
+            return cb(err, user);
+        });
+    }
+));
+
+app.get("/", function (req, res) {
+    res.render("home");
+});
+
+
 //auth google   dette sjekker om du du er tillat av google til bli athenticated
 app.get("/auth/google",
     passport.authenticate("google", {
@@ -112,6 +135,7 @@ app.get("/auth/google/tverrfag",
         res.redirect("/documentation")
     }
 );
+
 
 
 // render login
@@ -145,6 +169,14 @@ app.get("/documentation", function (req, res) {
     })
 });
 
+// ????????????????render submit HVIS IsAthenticated = true(har funnet brukeren)
+app.get("/submit", function (req, res) {
+    if (req.isAuthenticated()) {
+        res.render("submit")
+    } else {
+        res.redirect("/login");
+    }
+})
 
 
 //hvis logout knappen eller skriver in /logout så skal den logout og gå til homepage
