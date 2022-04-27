@@ -14,8 +14,6 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 //google
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-//facebook
-const FacebookStrategy = require('passport-facebook').Strategy;
 
 // code får å få findorCreate som hjelper med å google/facebook fine om du har eller om de må lage en ny kont
 const findOrCreate = require("mongoose-findorcreate")
