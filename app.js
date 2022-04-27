@@ -245,12 +245,12 @@ app.post("/login", function (req, res) {
 
 })
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 3000;
-}
+let port = process.env.PORT || config.httpPort;
+//if (port == null || port == "") {
+//    port = 3000;
+//}
 
 // starter opp serveren på nett
-app.listen(process.env.PORT, function () {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env)
+app.listen(port, function () {
+    console.log("Express server listening on port %d in %s mode")
 })
