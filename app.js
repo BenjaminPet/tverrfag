@@ -149,10 +149,10 @@ app.get("/documentation", function (req, res) {
     })
 });
 
-// ????????????????render submit HVIS IsAthenticated = true(har funnet brukeren)
-app.get("/submit", function (req, res) {
+// vurdering av oppgaven med auth må = true
+app.get("/vurdering", function (req, res) {
     if (req.isAuthenticated()) {
-        res.render("submit")
+        res.render("vurdering")
     } else {
         res.redirect("/login");
     }
