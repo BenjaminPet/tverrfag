@@ -38,7 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //coden som linker databasen tverrDB til koden 
-mongoose.connect("mongodb://localhost:27017/tverrDB", {
+mongoose.connect("mongodb+srv://admin:1234@tverr.gisz5.mongodb.net/tverrDB", {
     useNewUrlParser: true
 });
 
