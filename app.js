@@ -47,7 +47,7 @@ mongoose.connect("mongodb+srv://admin:1234@tverr.gisz5.mongodb.net/tverrDB", {
     useNewUrlParser: true
 });
 
-//
+
 const userSchema = new mongoose.Schema({
     email: String, // email
     password: String,
@@ -201,6 +201,7 @@ app.post("/login", function (req, res) {
 
 })
 
+// hvis port blir gitt en port av heroku poblicly så skal den bruke den men hvis koden blir startet lokalt så skal den bruke localhost:3000
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
@@ -208,5 +209,5 @@ if (port == null || port == "") {
 
 // starter opp serveren på nett
 app.listen(port, function () {
-    console.log("Express server listening on port %d in %s mode")
+    console.log("servere er nå oppe")
 })
