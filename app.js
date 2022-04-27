@@ -101,7 +101,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: "https://tverrfag.herokuapp.com/auth/facebook/tverrfag"
+        callbackURL: "https://tverrfag.herokuapp.com/facebook/callback/"
     },
     function (accessToken, refreshToken, profile, cb) {
         console.log(profile);
