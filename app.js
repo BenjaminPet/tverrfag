@@ -253,6 +253,6 @@ if (port == null || port == "") {
 }
 
 // starter opp serveren på nett
-app.listen(port, function () {
-    console.log("Server shas started successfully")
+app.listen(process.env.PORT, function () {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env)
 })
