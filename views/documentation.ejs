@@ -10,7 +10,7 @@
       Websiden forklarer at du må logge på enten med en allerede eksiterende konto eller 
       opprette ny konto. Alt av passord blir Hashet og har en høy sikkerhet. Alt blir lagret 
       inne på MongoDB og da brukte jeg et verktøy kalt Robo 3T. Der lagde jeg en database kalt 
-      «tverrDB» og inne på den lagde jeg en «collections» som heter «tverrusers». </p>
+      «tverrDB» og inne på den lagde jeg en «collections» som heter «tverrusers». </p><br><br>
 
     <h3>Mongodb</h3>
 
@@ -18,7 +18,7 @@
        «tverrUser». Inne på tverrUser er det en liste med email, Hashet passord og salt. Jeg har
        saltet passordet så det blir vanskeligere å knekke det. Når du har logget inn blir din pc
        registrert som autorisert. Dette betyr at du har full tilgang til denne dokumentasjons siden
-       etter å ha gått ut, med mindre du trykker på log ut knappen.</p>
+       etter å ha gått ut, med mindre du trykker på log ut knappen.</p><br><br>
     
     <h3>Hash</h3>
 
@@ -27,25 +27,25 @@
         får du samme Hashen. Når du registrerer deg, blir passordet Hashet og sendt til databasen.
        Når du skal logge inn igjen så henter den det Hashe’de passordet fra serveren og Hasher
         passordet du har skrevet inn og sammenligner dem. Jeg har laget et salt så den kan legge
-       det på passordet får å gjøre det vanskeligere å knekke.</p>
+       det på passordet får å gjøre det vanskeligere å knekke.</p><br><br>
 
     <h3>Google/Facebook Oauth</h3>
 
     <p>Jeg startet med å lage en «.env» fil for å lagre alle nøklene jeg skal ha til Google og Facebook.
        Jeg gjorde dette ved å skrive «npm i .env» i kommando også skrive «require("dotenv").config();» 
-       i app.js.</p>
+       i app.js.</p><br>
 
     <p>Google: Jeg startet med å gå på «https://console.cloud.google.com/» og lage en «Oauth consent 
       screen» og skrev inn app navn, e-post, scopes og så videre. Etter det gikk jeg inn på 
       «credentials» og lagde en Oauth2.0 og skrev inn en url av nettsiden og en url av nettsiden med 
       «/auth/google/tverrfag». Etter det fant jeg google «Client_Id» og «Client_Secret» og skrev dem 
       in i «.env». Så gikk jeg inn på JS koden min og lagde en GoogleStrategy og skrev inn lokasjonen 
-      av «Client_Id», «Client_Secret» og callbackurl for min webside</p>
+      av «Client_Id», «Client_Secret» og callbackurl for min webside</p><br>
 
     <p>Heroku: Jeg hadde et stort problem på starten ved at GitHub ikke ville koble seg til Heroku. 
       Jeg fikk det til ved å gjøre det manuelt på kommando. Jeg hadde også en feil på «clientID» til 
       Google som jeg brukte nesten hele onsdagen på og fikse. Feilen var jeg skrev en ekstre gåsetegn 
-      på «gitignore» og det ødela koden. </p>
+      på «gitignore» og det ødela koden. </p><br><br>
 
 
 
